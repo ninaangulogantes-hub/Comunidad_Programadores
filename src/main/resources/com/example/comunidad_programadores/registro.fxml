@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.comunidad_programadores.RegistroController">
+   <children>
+      <Label layoutX="286.0" layoutY="42.0" text="Registro de usuario" />
+      <GridPane layoutX="181.0" layoutY="86.0" prefHeight="78.0" prefWidth="298.0">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="2.0" minWidth="0.0" prefWidth="0.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="138.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="149.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="41.666666666666664" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="89.66665903727214" minHeight="10.0" prefHeight="36.99999999999999" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtNombre" GridPane.columnIndex="2" />
+            <Label prefHeight="17.0" prefWidth="127.0" text="Nombre de usuario:" GridPane.columnIndex="1" />
+            <Label layoutX="10.0" layoutY="24.0" text="Contraseña:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtContrasenha" layoutX="148.0" layoutY="18.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label layoutX="181.0" layoutY="172.0" text="Genero:" />
+      <RadioButton fx:id="rbHombre" layoutX="340.0" layoutY="164.0" mnemonicParsing="false" text="Hombre">
+         <toggleGroup>
+            <ToggleGroup fx:id="genero" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbMujer" layoutX="340.0" layoutY="191.0" mnemonicParsing="false" text="Mujer" toggleGroup="$genero" />
+      <RadioButton fx:id="rbDecir" layoutX="340.0" layoutY="217.0" mnemonicParsing="false" text="Prefiero no decirlo" toggleGroup="$genero" />
+      <Label layoutX="181.0" layoutY="255.0" text="Lenguaje de programación: " />
+      <ComboBox fx:id="cbLenguaje" layoutX="325.0" layoutY="251.0" prefWidth="150.0" />
+      <Button fx:id="bttRegistrar" layoutX="197.0" layoutY="320.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
+      <Button fx:id="bttLogin" layoutX="383.0" layoutY="320.0" mnemonicParsing="false" onAction="#inicio" text="Volver al Login" />
+   </children>
+</AnchorPane>
