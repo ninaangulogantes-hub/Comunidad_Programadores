@@ -1,5 +1,8 @@
 package com.example.comunidad_programadores;
 
+import com.db4o.ObjectContainer;
+import com.example.comunidad_programadores.DAO.ConexionDb4o;
+import com.example.comunidad_programadores.DAO.ProgramadoresDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,24 +73,21 @@ public class LoginController {
             alert.showAndWait();
             return;
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inicio.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-
-        Stage stage = (Stage)((Node)(actionEvent.getSource())).getScene().getWindow();
-
-        stage.setTitle("Inicio");
-        stage.setScene(scene);
-        stage.show();
+        if(!ProgramadoresDAO.registrarProgramador(txtNombre.getText(), txtContrasenha.getText())){
+            registrarse(actionEvent);
+        }else{
+            System.out.println("Error. Ese el usuario no existe.");
+        }
     }
 
     public void registrarse(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("registro.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
-        Stage stage = (Stage)((Node)(actionEvent.getSource())).getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("registro.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = (Stage)((Node)(actionEvent.getSource())).getScene().getWindow();
+            stage.setTitle("Inicio");
+            stage.setScene(scene);
+            stage.show();
 
-        stage.setTitle("Inicio");
-        stage.setScene(scene);
-        stage.show();
     }
 }
