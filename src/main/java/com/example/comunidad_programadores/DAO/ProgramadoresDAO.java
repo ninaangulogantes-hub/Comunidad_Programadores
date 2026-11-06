@@ -19,16 +19,9 @@ public class ProgramadoresDAO {
 
 //      Recogemos los programadores de la BD.
         ObjectSet<Progamadores> existeProgramador = db.queryByExample(p);
-        boolean existe = false;
 
-        if (existeProgramador.hasNext()) {
-            existe = true;
-        }
-//        Cerrramos la conexion
-        db.close();
-
-//        Devolvemos el resultado
-        return existe;
+//      Devolvemos el resultado de la pregunta a la db
+        return existeProgramador.hasNext();
 
     }
 
@@ -36,26 +29,35 @@ public class ProgramadoresDAO {
     public static boolean registrarProgramador(String programador, String contrasena) {
         //      Abrimos la conexion.
         ObjectContainer db = ConexionDb4o.getConexion();
+        boolean existe = false;
         try {
-
-//          Creamos el programador
-            Progamadores p = new Progamadores();
-
-//          Comprobamos si existe y si es asi lo regsitramos.
-            if (existeProgramador(programador)){
-                p.setUsuario(programador);
-                p.setContrasenha(contrasena);
+//            Preguntamos si existe para dscartar
+            if (existeProgramador(programador)) {
                 return false;
             }
-//          Guardamos el programador
-            db.store(programador);
-            db.commit();
+//          Creamos el programador
+            Progamadores p = new Progamadores();
+            p.setUsuario(programador);
+            p.setContrasenha(contrasena);
 
+//          Guardamos el programador
+            db.store(p);
+            db.commit();
             return true;
-//      Cuando termine cerramos la base de datos.
-        } finally {
-            db.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
+    public static void usuarioValido(String usuario, String contrasena) {
+        //      Abrimos la conexion.
+        ObjectContainer db = ConexionDb4o.getConexion();
+
+        if(existeProgramador(usuario)){
+            Progamadores p =
+            ObjectSet<Progamadores> esValido = db.queryByExample(p);
+        }
+    }
 }

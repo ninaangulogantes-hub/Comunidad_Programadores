@@ -4,7 +4,10 @@ module com.example.comunidad_programadores {
     requires static lombok;
     requires db4o;
 
+    exports com.example.comunidad_programadores;
+    exports com.example.comunidad_programadores.DAO;
 
     opens com.example.comunidad_programadores to javafx.fxml;
-    exports com.example.comunidad_programadores;
+    opens com.example.comunidad_programadores.entidades to db4o;
+
 }

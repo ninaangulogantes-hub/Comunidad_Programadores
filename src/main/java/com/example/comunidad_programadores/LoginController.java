@@ -73,10 +73,20 @@ public class LoginController {
             alert.showAndWait();
             return;
         }
+        ProgramadoresDAO.usuarioValido(txtNombre.getText(), txtContrasenha.getText());
         if(!ProgramadoresDAO.registrarProgramador(txtNombre.getText(), txtContrasenha.getText())){
-            registrarse(actionEvent);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inicio.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = (Stage)((Node)(actionEvent.getSource())).getScene().getWindow();
+            stage.setTitle("Inicio");
+            stage.setScene(scene);
+            stage.show();
+
         }else{
-            System.out.println("Error. Ese el usuario no existe.");
+            System.out.println("Error. Ese el usuario no existe. Vuelva a intentarlo o registrse.");
+            txtNombre.setText(" ");
+            txtContrasenha.setText(" ");
         }
     }
 
