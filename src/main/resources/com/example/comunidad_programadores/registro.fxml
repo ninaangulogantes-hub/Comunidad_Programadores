@@ -35,5 +35,6 @@
       <ComboBox fx:id="cbLenguaje" layoutX="325.0" layoutY="251.0" prefWidth="150.0" />
       <Button fx:id="bttRegistrar" layoutX="197.0" layoutY="320.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
       <Button fx:id="bttLogin" layoutX="383.0" layoutY="320.0" mnemonicParsing="false" onAction="#inicio" text="Volver al Login" />
+      <Label fx:id="labelEstado" layoutX="132.0" layoutY="369.0" prefHeight="7.0" prefWidth="347.0" />
    </children>
 </AnchorPane>

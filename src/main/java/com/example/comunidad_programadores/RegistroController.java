@@ -1,14 +1,13 @@
 package com.example.comunidad_programadores;
 
+import com.example.comunidad_programadores.DAO.ProgramadoresDAO;
+import com.example.comunidad_programadores.entidades.Progamadores;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,6 +25,11 @@ public class RegistroController {
     private RadioButton rbDecir;
     @FXML
     private ComboBox<String> cbLenguaje;
+    @FXML
+    private Label labelEstado;
+
+    String genero = "";
+    String lenguaje = "";
 
     public void initialize() {
         cbLenguaje.getItems().addAll("Java", "Python", "JavaScript");
@@ -45,8 +49,8 @@ public class RegistroController {
             alert.showAndWait();
             return;
         }
-//      Hacer lo de que solo permita unico nombre de usuario
 
+//      Hacer lo de que solo permita unico nombre de usuario
         if (txtContrasenha.getText().isEmpty()) {
             alert.setContentText("Error.El campo contraseña debe estar completo.");
             alert.showAndWait();
@@ -71,25 +75,29 @@ public class RegistroController {
             alert.setContentText("Error. Los lenguajes deben estar completos.");
             alert.showAndWait();
             return;
+        }else{
+           lenguaje = cbLenguaje.getValue();
         }
 
-        if(!rbMujer.isSelected()){
-            alert.setContentText("Error. El genero deben estar completos.");
-            alert.showAndWait();
-            return;
-        }
-        if (!rbHombre.isSelected()) {
-            alert.setContentText("Error. El genero deben estar completos.");
-            alert.showAndWait();
-            return;
-        }
-        if (!rbDecir.isSelected()) {
-            alert.setContentText("Error. El genero deben estar completos.");
+        if(rbMujer.isSelected()){
+            genero = "Mujer";
+        } else if (rbHombre.isSelected()) {
+            genero = "Hombre";
+        } else if (rbDecir.isSelected()) {
+            genero = "Prefiero no decirlo";
+        }else{
+            alert.setContentText("Error. El sexo debe ser seleccionado");
             alert.showAndWait();
             return;
         }
 
-
+        if(ProgramadoresDAO.registrarProgramador(txtNombre.getText(),txtContrasenha.getText(), genero, lenguaje)){
+            labelEstado.setText("Usuario registrado con éxito!");
+        }else{
+            labelEstado.setText("Error al registrar. Inténtelo de nuevo.");
+            txtNombre.setText(" ");
+            txtContrasenha.setText(" ");
+        }
     }
 
     public void inicio(ActionEvent actionEvent) throws IOException {

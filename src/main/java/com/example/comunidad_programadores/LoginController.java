@@ -33,6 +33,8 @@ public class LoginController {
 
     @FXML
     private Button bttRegistrarse;
+    @FXML
+    private Label labelError;
 
     private String errores = "";
 
@@ -73,8 +75,8 @@ public class LoginController {
             alert.showAndWait();
             return;
         }
-        ProgramadoresDAO.usuarioValido(txtNombre.getText(), txtContrasenha.getText());
-        if(!ProgramadoresDAO.registrarProgramador(txtNombre.getText(), txtContrasenha.getText())){
+
+        if(ProgramadoresDAO.usuarioValido(txtNombre.getText(), txtContrasenha.getText())){
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inicio.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
@@ -84,7 +86,8 @@ public class LoginController {
             stage.show();
 
         }else{
-            System.out.println("Error. Ese el usuario no existe. Vuelva a intentarlo o registrse.");
+
+            labelError.setText("Error. Ese el usuario no existe. Vuelva a intentarlo o pulse el boton -Registrar-.");
             txtNombre.setText(" ");
             txtContrasenha.setText(" ");
         }

@@ -6,8 +6,18 @@ import com.example.comunidad_programadores.entidades.Progamadores;
 
 public class ProgramadoresDAO {
 
+//  Funcion que devuelve los programadores filtrados
+    public static Progamadores filtrarProgramadores(String lenguaje){
 
-    //  Funcion que comprueba si existe .
+        Progamadores p = new Progamadores();
+        p.setLenguaje(lenguaje);
+
+//      Recogemos los programadores de la BD.
+        ObjectSet<Progamadores> existeProgramador = db.queryByExample(p);
+
+        return p;
+    }
+//  Funcion que comprueba si existe .
     public static boolean existeProgramador(String usuario) {
 
 //      Abrimos la conexion
@@ -24,25 +34,29 @@ public class ProgramadoresDAO {
         return existeProgramador.hasNext();
 
     }
+//  Funcion que registra un programador
+    public static boolean registrarProgramador(String programador, String contrasena, String genero, String lenguaje) {
 
-    //  Metodo que registra un programador
-    public static boolean registrarProgramador(String programador, String contrasena) {
-        //      Abrimos la conexion.
+//      Abrimos la conexion.
         ObjectContainer db = ConexionDb4o.getConexion();
-        boolean existe = false;
+
         try {
 //            Preguntamos si existe para dscartar
             if (existeProgramador(programador)) {
+                System.out.println("existe");
                 return false;
             }
 //          Creamos el programador
             Progamadores p = new Progamadores();
             p.setUsuario(programador);
             p.setContrasenha(contrasena);
+            p.setGenero(genero);
+            p.setLenguaje(lenguaje);
 
 //          Guardamos el programador
             db.store(p);
             db.commit();
+
             return true;
 
         } catch (Exception e) {
@@ -50,14 +64,21 @@ public class ProgramadoresDAO {
             return false;
         }
     }
+//  Funcion que comprueba si un usuario coincide con la contrasena introducida
+    public static boolean usuarioValido(String usuario, String contrasena) {
 
-    public static void usuarioValido(String usuario, String contrasena) {
         //      Abrimos la conexion.
         ObjectContainer db = ConexionDb4o.getConexion();
 
-        if(existeProgramador(usuario)){
-            Progamadores p =
-            ObjectSet<Progamadores> esValido = db.queryByExample(p);
-        }
+//      Creamos un usuario y le ponemos las variables mandadas desde el main.
+        Progamadores p = new Progamadores();
+        p.setUsuario(usuario);
+        p.setContrasenha(contrasena);
+
+//      Le preguntamos a la base de datos por ello.
+        ObjectSet<Progamadores> esValidoP = db.queryByExample(p);
+
+        return esValidoP.hasNext();
+
     }
 }

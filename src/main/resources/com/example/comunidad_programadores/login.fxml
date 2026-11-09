@@ -17,13 +17,14 @@
         </rowConstraints>
          <children>
             <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="67.0" text="Usuario: " />
-            <TextField fx:id="txtNombre" text="Introduce tu usuario (Min 5 caractéres)." GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" promptText="Introduce tu usuario (Min 5 caractéres)." GridPane.columnIndex="1" />
             <Label layoutX="53.0" layoutY="30.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="67.0" text="Contraseña: " GridPane.rowIndex="1" />
-            <TextField fx:id="txtContrasenha" layoutX="162.0" layoutY="28.0" text="Introduzca la contraseña." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtContrasenha" layoutX="162.0" layoutY="28.0" promptText="Introduzca la contraseña." GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="bttLogin" mnemonicParsing="false" onAction="#loggearse" text="Login" GridPane.rowIndex="2" />
             <Button fx:id="bttRegistrarse" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label layoutX="237.0" layoutY="36.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="193.0" text="Comunidad de programadores" />
+      <Label fx:id="labelError" alignment="BOTTOM_CENTER" layoutX="250.0" layoutY="330.0" />
    </children>
 </AnchorPane>
