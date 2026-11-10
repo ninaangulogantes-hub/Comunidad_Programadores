@@ -80,6 +80,11 @@ public class LoginController {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inicio.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+
+//          Le compartimos a inicio el usuario que se ha loggeado
+            InicioController inicio = fxmlLoader.getController();
+            inicio.enviarDatos(txtNombre.getText());
+
             Stage stage = (Stage)((Node)(actionEvent.getSource())).getScene().getWindow();
             stage.setTitle("Inicio");
             stage.setScene(scene);

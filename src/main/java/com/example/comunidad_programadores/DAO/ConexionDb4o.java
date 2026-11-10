@@ -15,7 +15,7 @@ public class ConexionDb4o {
         return db;
     }
 
-    // Método crucial para cerrar la base de datos al salir de la aplicación
+//  Metodo que cierra la sesion
     public static synchronized void cerrarConexion() {
         if (db != null && !db.ext().isClosed()) {
             db.close();
