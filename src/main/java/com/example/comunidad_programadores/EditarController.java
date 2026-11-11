@@ -32,6 +32,7 @@ public class EditarController {
 //      Pedimos los datos del programador a la BD
         Progamadores p = ProgramadoresDAO.mostrarUsuario(usuario);
 
+//        QUEDASTE AQUÍ
 
     }
 

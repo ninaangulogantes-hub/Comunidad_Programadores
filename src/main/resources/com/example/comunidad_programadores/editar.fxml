@@ -18,7 +18,7 @@
          </toggleGroup></RadioButton>
       <RadioButton layoutX="324.0" layoutY="200.0" mnemonicParsing="false" text="Mujer" toggleGroup="$genero" />
       <RadioButton layoutX="384.0" layoutY="200.0" mnemonicParsing="false" text="Prefiero no decirlo" toggleGroup="$genero" />
-      <ComboBox fx:id="lenguaje" layoutX="251.0" layoutY="245.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbLenguaje" layoutX="251.0" layoutY="245.0" prefWidth="150.0" />
       <Button layoutX="211.0" layoutY="314.0" mnemonicParsing="false" onAction="#guardar" text="Guardar cambios" />
       <Button layoutX="351.0" layoutY="314.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
    </children>
