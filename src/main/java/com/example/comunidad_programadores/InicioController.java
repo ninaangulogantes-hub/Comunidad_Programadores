@@ -49,7 +49,6 @@ public class InicioController {
         seleccionarLenguaje(null);
 
     }
-
     //  Metodo que cierra la sesion
     public void cerrarSesion(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
@@ -61,8 +60,6 @@ public class InicioController {
         stage.setScene(scene);
         stage.show();
     }
-
-    //  Metodo que edita el perfil REVISAR HACER UN UNICO METODO
     public void editarPerfil(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editar.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
@@ -76,15 +73,12 @@ public class InicioController {
         stage.setScene(scene);
         stage.show();
     }
-
     //   Metodo que crea un Excel
     public void crearExcel(ActionEvent actionEvent) {
     }
-
     //  Metodo que crea un pdf
     public void crearPdf(ActionEvent actionEvent) {
     }
-
     //  metodo que muestra en una tabla los programadores de un lenguaje en específico.
     @FXML
     public void seleccionarLenguaje(ActionEvent actionEvent) {
@@ -93,25 +87,23 @@ public class InicioController {
 
 //      recogemos el arraylist del dao
         ArrayList<Progamadores> listaDesdeDAO = ProgramadoresDAO.filtrarProgramadores(lenguajeElegido);
+
 //      Limpiamos para borrar la seleccion anterior
         tvProgramadores.getItems().clear();
-
-        // Lo convertimos al tipo para mostrarlo en la tabla
-//      ObservableList<Progamadores> lista = FXCollections.observableArrayList(listaDesdeDAO);
         tvProgramadores.getItems().addAll(listaDesdeDAO);
 
 
     }
 
-    public void enviarDatos(String nombre) {
-        this.usuario = usuario;
+    public void enviarDatos(String nombre, String genero) {
+        this.usuario = nombre;
 
-        if(cbLenguaje.getValue().equalsIgnoreCase("hombre")){
-            labelBienvenida.setText("Bienvenido, "+usuario);
-        } else if (cbLenguaje.getValue().equalsIgnoreCase("mujer")) {
-            labelBienvenida.setText("Bienvenida, "+usuario);
-        }else{
-            labelBienvenida.setText("Bienvenidx, "+usuario);
+        if (genero.equalsIgnoreCase("hombre")) {
+            labelBienvenida.setText("Bienvenido, " + usuario);
+        } else if (genero.equalsIgnoreCase("mujer")) {
+            labelBienvenida.setText("Bienvenida, " + usuario);
+        } else {
+            labelBienvenida.setText("Bienvenidx, " + usuario);
         }
 
     }

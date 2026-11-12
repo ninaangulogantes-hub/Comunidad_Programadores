@@ -44,7 +44,7 @@ public class ProgramadoresDAO {
         return programadores;
     }
 
-    //  Funcion que comprueba si existe .
+    //  Funcion que comprueba si existe.
     public static boolean existeProgramador(String usuario) {
 
 //      Abrimos la conexion
@@ -62,7 +62,7 @@ public class ProgramadoresDAO {
 
     }
 
-    //  Funcion que registra un programador
+    //  Funcion que registra un programador.
     public static boolean registrarProgramador(String programador, String contrasena, String genero, String lenguaje) {
 
 //      Abrimos la conexion.
@@ -93,7 +93,7 @@ public class ProgramadoresDAO {
         }
     }
 
-    //  Funcion que comprueba si un usuario coincide con la contrasena introducida
+    //  Funcion que comprueba si un usuario coincide con la contrasena introducida.
     public static boolean usuarioValido(String usuario, String contrasena) {
 
         //      Abrimos la conexion.
@@ -112,6 +112,7 @@ public class ProgramadoresDAO {
     }
 
     public static Progamadores mostrarUsuario(String usuario) {
+
 //      Abrimos la conexion.
         ObjectContainer db = ConexionDb4o.getConexion();
 
@@ -122,9 +123,18 @@ public class ProgramadoresDAO {
 //      Buscamos al user y lo devolvemos
         ObjectSet<Progamadores> mostrarUsuario = db.queryByExample(p);
         Progamadores user = null;
+
         if (mostrarUsuario.hasNext()) {
             user = mostrarUsuario.next();
         }
         return user;
+    }
+
+    public static void actualizarProgramador(Progamadores p) {
+        //      Abrimos la conexion.
+        ObjectContainer db = ConexionDb4o.getConexion();
+
+        db.store(p);
+        db.commit();
     }
 }
